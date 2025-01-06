@@ -24,7 +24,7 @@ const fetchData = async (event) => {
         }else{
             const data = await res.json()
             if(data.token){
-                localStorage.setItem("auth_token", data.token)
+                localStorage.setItem("token", data.token)
                 
             }
             console.log("Login succesful")

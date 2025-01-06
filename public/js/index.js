@@ -1,4 +1,7 @@
-document.getElementById("logout").addEventListener("click", function() {
-	localStorage.removeItem("token")
-    window.location.href = "/login.html"
-});
+
+const logout = () => {
+    localStorage.removeItem("token")
+    window.location.href = "login.html"
+}
+
+document.getElementById("logout").addEventListener("click", logout)

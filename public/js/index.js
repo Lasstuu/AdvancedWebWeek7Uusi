@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         else{
             console.log("Success authetnitcate")
             
-            window.location.href = "/login.html";
+            window.location.href = "/";
         }
     
     });

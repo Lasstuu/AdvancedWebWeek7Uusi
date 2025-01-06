@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express'
 import { body, Result, ValidationError, validationResult } from 'express-validator'
 import bcrypt from 'bcrypt'
 import jwt, { JwtPayload } from 'jsonwebtoken'
-import { validateToken } from './middleware/validateToken'
+import { validateToken } from "./middleware/validateToken"
 
 
 const router:Router = Router()
@@ -79,7 +79,15 @@ async (req: Request, res: Response):Promise<any> =>{
         return res.status(500).json({ error: "Internal server error" })
     }
 
-    
 
 })
+
+router.get("/api/private", validateToken, async (req: Request, res: Response):Promise<any> => {
+    try {
+        return res.status(200).json({"message": "This is a protected secure route"})
+    } catch(error){
+        console.log(`Error while fecthing users ${error}`)
+        return res.status(500).json({error: "Internal Server Error"})
+    }   
+});
 export default router

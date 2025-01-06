@@ -11,8 +11,10 @@ interface CustomRequest extends Request {
 export const validateToken = (req: CustomRequest, res: Response, next: NextFunction) => {
     const token: string | undefined = req.header('authorization')?.split(" ")[1]
 
-    if(!token) return res.status(401).json({message: "Access denied, missing token"})
-
+    if(!token) {
+        res.status(401).json({message: "Access denied, missing token"})
+        return
+    }
     try {
         const verified: JwtPayload = jwt.verify(token, process.env.SECRET as string) as JwtPayload
         req.user = verified

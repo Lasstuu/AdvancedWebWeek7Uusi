@@ -1,26 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
         window.location.href = "/login.html";
-    } else {
-        try{
-            fetch("/api/private", {
-                method: "GET",
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-                
-            })
-            if (response.ok) {
-                return response.json();
-            }
-        }catch(error){
-            console.error("Error:", error);
+    } 
+
+    const response = await fetch("/api/private", {
+            method: "GET",
+            headers: {
+                "authorization": `Bearer ${token}`
+            }     
+        })
+        if (!response.ok) {
+            console.log("error")
+        }
+        else{
+            console.log("Success authetnitcate")
+            
             window.location.href = "/login.html";
         }
-    }
-});
+    
+    });
 
 const logout = () => {
     localStorage.removeItem("token")

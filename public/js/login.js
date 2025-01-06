@@ -28,6 +28,7 @@ const fetchData = async (event) => {
                 
             }
             console.log("Login succesful")
+            window.location.href = "/index.html"
         }
     } catch(error){
         console.log(`Error trying to register: {$error.message}`)

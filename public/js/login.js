@@ -25,10 +25,11 @@ const fetchData = async (event) => {
             const data = await res.json()
             if(data.token){
                 localStorage.setItem("token", data.token)
+                window.location.href = "/"
                 
             }
             console.log("Login succesful")
-            window.location.href = "/index.html"
+            
         }
     } catch(error){
         console.log(`Error trying to register: {$error.message}`)

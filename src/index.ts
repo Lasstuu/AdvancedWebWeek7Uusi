@@ -39,7 +39,7 @@ router.post("/api/user/register",
         }
 
         users.push(newUser)
-        return res.status(200).json({message: "User registered successfully"})    
+        return res.status(200).json(newUser)    
     } catch (error: any) {
         console.error(`Error during registration: ${error}`)
         return res.status(500).json({error: "Internal Server Error"})

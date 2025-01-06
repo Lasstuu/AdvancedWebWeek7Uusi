@@ -4,23 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!token) {
         window.location.href = "/login.html";
     } else {
-        fetch("/api/private", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
-        .then(response => {
+        try{
+            fetch("/api/private", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+                
+            })
             if (response.ok) {
                 return response.json();
-            } else {
-                throw new Error("Failed to authenticate");
             }
-        })
-        .catch(error => {
+        }catch(error){
             console.error("Error:", error);
             window.location.href = "/login.html";
-        });
+        }
     }
 });
 

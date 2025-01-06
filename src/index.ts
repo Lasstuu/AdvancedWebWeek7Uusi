@@ -51,13 +51,14 @@ router.get("/api/user/list", async (req: Request, res: Response):Promise<any> =>
     return res.status(200).json(users);
 });
 
-router.post("/api/user/login"), 
-body("email").trim().escape(),
-body("password").escape(),
-async (req: Request, res: Response) =>{
+
+router.post("/api/user/login", 
+body("email").escape(),
+body("password"),
+async (req: Request, res: Response):Promise<any> =>{
     try {
         const user: IUser | undefined = users.find(user => user.email === req.body.email)
-
+        console.log(user)
         if (!user){
             return res.status(401).json({message: "Login failed"})
         }
@@ -78,5 +79,5 @@ async (req: Request, res: Response) =>{
 
 
 
-}
+})
 export default router
